@@ -1,0 +1,33 @@
+{
+  "name": "hanzi-grids",
+  "version": "1.0.0",
+  "description": "Character Practice Sheet Generator",
+  "author": "Luke Askins <lukeaskins@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "bulma": "^0.7.1",
+    "nuxt": "^1.0.0",
+    "postcss": "^6.0.22",
+    "postcss-hexrgba": "^1.0.1",
+    "postcss-nested": "^3.0.0",
+    "postcss-responsive-type": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.5.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1"
+  }
+}
