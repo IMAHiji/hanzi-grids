@@ -43,7 +43,6 @@ export default {
   width:8.5in;
 }
 .grid-container{
-
   border: 1px solid black;
   width:8.5in;
   height: 10in;

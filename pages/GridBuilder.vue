@@ -1,10 +1,18 @@
 <template>
   <div class="grid-builder-container">
     <h1>Grid Builder</h1>
-    <input
-      type="text"
-      :maxlength="maxInput"
-      @change="updateActiveCharacter">
+    <div class="grid-options">
+      <label for="character-input">Choose Character</label>
+      <input
+        name="character-input"
+        type="text"
+        :maxlength="maxInput"
+        @input="updateActiveCharacter">
+      <nuxt-link to="/PrintGrid">
+        <button>Print</button>
+      </nuxt-link>
+    </div>
+
     <div class="page-preview">
       <div class="header-preview">
         <h2>Character: {{ activeCharacter }}</h2>
@@ -47,9 +55,7 @@ export default {
 };
 </script>
 <style>
-
 .page-preview{
-
   height:11in;
   width:8.5in;
   margin:0 auto;
@@ -57,7 +63,7 @@ export default {
   font-family: Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 .header-preview{
   border: 1px solid red;
@@ -74,5 +80,16 @@ export default {
   align-content: center;
   justify-content: center;
   flex-wrap: wrap;
+}
+.grid-options{
+  display: flex;
+  justify-content: center;
+}
+.grid-builder-container{
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 </style>
