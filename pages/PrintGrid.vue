@@ -1,6 +1,8 @@
 <template>
   <div class="page-container">
-    <h3>Character: {{ activeCharacter }}</h3>
+    <div class="header-preview">
+      <h2>Character: {{ activeCharacter }}</h2>
+    </div>
     <div class="grid-container">
       <GridElement
         v-for="index in total"

@@ -21,14 +21,14 @@
         class="grid-container"
         size="A4">
         <grid-element
-          v-for="index in testNum"
+          v-for="index in numberOfElements"
           :key="index"/>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, dispatch, Store } from 'vuex';
 import GridElement from '@/components/GridElement.vue';
 import calculateNumberOfGridElements from '~/plugins/gridCalc'
 export default {
@@ -39,12 +39,12 @@ export default {
   data() {
     return {
       maxInput: 1,
-      testNum: calculateNumberOfGridElements(9.5, 7.5, 1)
     };
   },
   computed: {
     ...mapGetters([
       'activeCharacter',
+      'numberOfElements'
     ]),
   },
   methods: {
@@ -52,7 +52,10 @@ export default {
       this.$store.commit('updateActiveCharacter', e.target.value);
     },
   },
-};
+  mounted: ()=>{
+    this.$store.dispatch('updateNumberOfElements')
+  },
+}
 </script>
 <style>
 .page-preview{
