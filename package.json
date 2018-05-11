@@ -13,7 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "bulma": "^0.7.1",
+    "muse-ui": "^2.1.0",
     "nuxt": "^1.0.0",
     "postcss": "^6.0.22",
     "postcss-hexrgba": "^1.0.1",

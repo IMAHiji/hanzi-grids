@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import { mapGetters, dispatch, Store } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import GridElement from '@/components/GridElement.vue';
 import calculateNumberOfGridElements from '~/plugins/gridCalc'
 export default {
@@ -44,17 +44,22 @@ export default {
   computed: {
     ...mapGetters([
       'activeCharacter',
-      'numberOfElements'
     ]),
+    ...mapState([
+      'numberOfElements'
+    ])
   },
   methods: {
     updateActiveCharacter(e) {
       this.$store.commit('updateActiveCharacter', e.target.value);
     },
+    populateElements({store}){
+      this.$store.dispatch('updateNumberOfElements')
+    }
   },
-  mounted: ()=>{
-    this.$store.dispatch('updateNumberOfElements')
-  },
+  async fetch({store}){
+    await store.dispatch('updateNumberOfElements')
+  }
 }
 </script>
 <style>

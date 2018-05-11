@@ -10,8 +10,10 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Character Practice Sheet Generator' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
+    ],
   },
   /*
   ** Customize the progress bar color
@@ -21,11 +23,6 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    postcss: [
-      require('postcss-nested')(),
-      require('postcss-responsive-type')(),
-      require('postcss-hexrgba')(),
-    ],
     /*
     ** Run ESLint on save
     */
@@ -38,9 +35,10 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    }
+    },
+
   },
   plugins: [
-    '~/plugins/gridCalc.js'
+    '~/plugins/gridCalc.js',
   ]
 }

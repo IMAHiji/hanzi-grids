@@ -36,7 +36,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     position: relative;
-    margin:0 auto;
+    margin:2px auto;
   }
   .character {
     font-family: "KaiTi TC" , "楷体", STKaiti, "华文楷体", serif ;
