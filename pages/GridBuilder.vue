@@ -2,12 +2,38 @@
   <div class="grid-builder-container">
     <h1>Grid Builder</h1>
     <div class="grid-options">
-      <label for="character-input">Choose Character</label>
-      <input
-        name="character-input"
-        type="text"
-        :maxlength="maxInput"
-        @input="updateActiveCharacter">
+      <div class="option-wrap">
+        <label for="character-input">Choose Character</label>
+        <input
+          name="character-input"
+          type="text"
+          :maxlength="maxInput"
+          @keyup="updateActiveCharacter">
+
+      </div>
+      <div class="option-wrap">
+        <label for="element-size">Size</label>
+        <input
+          name="element-size"
+          type="range"
+          min="0.5"
+          max="1"
+          step="0.1"
+          @input="updateSize">
+
+      </div>
+      <div class="option-wrap">
+        <p>Grid Type</p>
+        <select
+          name="grid-type"
+          id="grid-type"
+          :value="gridType"
+          @input="updateGridType">
+          <option value="field">田</option>
+          <option value="rice">米</option>
+        </select>
+
+      </div>
       <nuxt-link to="/PrintGrid">
         <button>Print</button>
       </nuxt-link>
@@ -16,6 +42,8 @@
     <div class="page-preview">
       <div class="header-preview">
         <h2>Character: {{ activeCharacter }}</h2>
+        <h2>Grid type: {{ gridType }}</h2>
+        <h2>Size: {{ gridElement.side }} inch</h2>
       </div>
       <div
         class="grid-container"
@@ -44,17 +72,28 @@ export default {
   computed: {
     ...mapGetters([
       'activeCharacter',
+      'gridElement',
     ]),
     ...mapState([
-      'numberOfElements'
+      'numberOfElements',
+      'gridType',
+
     ])
   },
   methods: {
     updateActiveCharacter(e) {
       this.$store.commit('updateActiveCharacter', e.target.value);
     },
-    populateElements({store}){
+    populateElements(){
       this.$store.dispatch('updateNumberOfElements')
+    },
+    updateGridType(e){
+      console.log('Dispatch update grid type', e.target.value)
+      this.$store.commit('updateGridType', e.target.value)
+    },
+    updateSize(e){
+      this.$store.dispatch('updateSize', e.target.value)
+      this.$store.dispatch('updateNumberOfElements', e.target.value)
     }
   },
   async fetch({store}){
@@ -89,9 +128,14 @@ export default {
   justify-content: center;
   flex-wrap: wrap;
 }
-.grid-options{
+.grid-options {
   display: flex;
   justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.option-wrap {
+  margin:10px;
 }
 .grid-builder-container{
   display:flex;

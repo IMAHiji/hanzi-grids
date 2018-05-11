@@ -1,12 +1,14 @@
 <template>
-  <div class="grid-element">
+  <div
+    class="grid-element"
+    :style="{ width: gridElement.side+'in', height: gridElement.side+'in' }">
     <span class="center-horizontal" />
     <span class="center-vertical" />
     <p class="character">{{ activeCharacter }}</p>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 export default {
   props: {
     character: {
@@ -21,7 +23,11 @@ export default {
   computed: {
     ...mapGetters([
       'activeCharacter',
+      'gridElement'
     ]),
+    ...mapState([
+      'gridType',
+    ])
   },
 };
 </script>
@@ -29,8 +35,6 @@ export default {
   .grid-element {
     border:1px solid black;
     font-size:20px;
-    height:1in;
-    width: 1in;
     display:flex;
     flex:0 0 auto;
     flex-direction: column;
