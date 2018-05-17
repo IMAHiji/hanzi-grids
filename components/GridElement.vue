@@ -2,8 +2,7 @@
   <div
     class="grid-element"
     :style="{ width: gridElement.side+'in', height: gridElement.side+'in' }">
-    <span class="center-horizontal" />
-    <span class="center-vertical" />
+    <component :is="gridTypeCalc" />
     <p
       class="character"
       :style="{ fontSize: `${gridElement.fontSize}px` }" >{{ activeCharacter }}</p>
@@ -11,7 +10,15 @@
 </template>
 <script>
 import { mapGetters, mapState } from 'vuex';
+import FieldGrid from './FieldGrid.vue'
+import RiceGrid from './RiceGrid.vue'
+
 export default {
+  name:'GridElement',
+  components: {
+    FieldGrid,
+    RiceGrid
+  },
   props: {
     character: {
       type: String,
@@ -29,7 +36,19 @@ export default {
     ]),
     ...mapState([
       'gridType',
-    ])
+    ]),
+    gridTypeCalc() {
+      switch(this.gridType) {
+        case 'rice':
+          return RiceGrid;
+          break;
+        case 'field':
+          return FieldGrid;
+          break;
+        default:
+          return FieldGrid;
+      }
+    }
   },
 };
 </script>
@@ -54,21 +73,5 @@ export default {
     display: block;
     color: rgba(0,0,0,0.2);
     font-weight:300;
-  }
-
-
-  .center-vertical {
-    position: absolute;
-    left:50%;
-    width: 1px;
-    height:100%;
-    border: 0.5px dotted rgba(0,0,0,0.5);
-  }
-  .center-horizontal {
-    position: absolute;
-    top:50%;
-    width: 100%;
-    height:1px;
-    border: 0.5px dotted rgba(0,0,0,0.5);
   }
 </style>
