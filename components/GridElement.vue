@@ -33,16 +33,19 @@ export default {
   },
 };
 </script>
-<style>
+<style >
   .grid-element {
     border:1px solid black;
     font-size:20px;
     display:flex;
-    flex:0 0 auto;
+    flex:0 1 auto;
     flex-direction: column;
     justify-content: center;
     position: relative;
-    margin:2px auto;
+    margin:1px;
+  }
+  .grid-element:not(:first-child) p {
+    visibility: hidden
   }
   .character {
     font-family: "KaiTi TC" , "楷体", STKaiti, "华文楷体", serif ;
@@ -52,6 +55,8 @@ export default {
     color: rgba(0,0,0,0.2);
     font-weight:300;
   }
+
+
   .center-vertical {
     position: absolute;
     left:50%;

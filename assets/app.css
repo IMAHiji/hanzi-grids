@@ -1,1 +1,15 @@
 
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity .1s;
+}
+
+*{
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #35495e;
+}

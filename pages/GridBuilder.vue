@@ -1,50 +1,58 @@
 <template>
   <div class="grid-builder-container">
-    <h1>Grid Builder</h1>
-    <div class="grid-options">
-      <div class="option-wrap">
-        <label for="character-input">Choose Character</label>
-        <input
+    <section class="grid-options">
+
+      <b-field label="Choose Character">
+        <b-input
           name="character-input"
           type="text"
           :maxlength="maxInput"
-          @keyup="updateActiveCharacter">
+          @input="updateActiveCharacter" />
+      </b-field>
 
-      </div>
-      <div class="option-wrap">
-        <label for="element-size">Size</label>
-        <input
+
+      <b-field label="Grid Size (inches)">
+        <b-input
           name="element-size"
           type="number"
-          value="1"
-          min="0.5"
+          min="0.6"
           max="1"
           step="0.1"
-          @input="updateSize"><span>inches</span>
+          @input="updateSize" />
+      </b-field>
 
-      </div>
-      <div class="option-wrap">
-        <p>Grid Type</p>
-        <select
+
+
+      <b-field label="Grid Type">
+        <b-select
+          placeholder="Grid Type"
           name="grid-type"
           id="grid-type"
           :value="gridType"
           @input="updateGridType">
           <option value="field">田</option>
           <option value="rice">米</option>
-        </select>
+        </b-select>
+      </b-field>
 
-      </div>
-      <nuxt-link to="/PrintGrid">
-        <button>Print</button>
-      </nuxt-link>
-    </div>
 
-    <div class="page-preview">
-      <div class="header-preview">
-        <h2>Character: {{ activeCharacter }}</h2>
-        <h2>Grid type: {{ gridType }}</h2>
-        <h2>Size: {{ gridElement.side }} inch font: {{ gridElement.fontSize }} lines: {{ numberOfLines }} per line: {{ lineLength }} </h2>
+
+
+      <b-field label="Print Grid">
+        <nuxt-link to="/PrintGrid">
+          <button class="button">Print</button>
+        </nuxt-link>
+      </b-field>
+
+    </section>
+
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <p>Name: </p>
+          <p>Date: </p>
+          <p>Character: {{ activeCharacter }}</p>
+        </div>
       </div>
       <div
         class="grid-container"
@@ -94,21 +102,21 @@ export default {
   },
   methods: {
     updateActiveCharacter(e) {
-      this.$store.commit('updateActiveCharacter', e.target.value);
+      this.$store.commit('updateActiveCharacter', e);
     },
     updateGridType(e){
-      console.log('Dispatch update grid type', e.target.value)
-      this.$store.commit('updateGridType', e.target.value)
+      console.log('Dispatch update grid type', e)
+      this.$store.commit('updateGridType', e)
     },
     updateSize(e){
-      this.$store.dispatch('updateSize', e.target.value)
-      this.$store.dispatch('updateNumberOfElements', e.target.value)
+      this.$store.dispatch('updateSize', e)
+      this.$store.dispatch('updateNumberOfElements', e)
     }
   },
-  // async fetch({store}){
-  //   console.log('Fetch fired')
-  //   await store.dispatch('updateNumberOfElements', 1)
-  // },
+  async fetch({store}){
+    console.log('Fetch fired')
+    await store.dispatch('updateNumberOfElements', 1)
+  },
 }
 </script>
 <style>
@@ -123,12 +131,10 @@ export default {
   justify-content: center;
 }
 .header-preview{
-  border: 1px solid red;
   height: 1in;
   width:8.5in;
 }
 .grid-container {
-  border: 2px solid green;
   height:9.5in;
   width:8in;
   margin:0 auto;
@@ -138,9 +144,16 @@ export default {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  width:100%;
+}
+.field{
+  margin: 0 20px;
 }
 .option-wrap {
   margin:10px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .grid-builder-container{
   display:flex;
@@ -159,8 +172,13 @@ export default {
 }
 .line-wrapper{
   display:flex;
-  flex: 0 0 auto;
   flex-direction: row;
   flex-wrap:nowrap;
+  justify-content: center;
+
+
 }
+
+
+
 </style>

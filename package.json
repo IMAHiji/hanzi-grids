@@ -15,6 +15,7 @@
   "dependencies": {
     "muse-ui": "^2.1.0",
     "nuxt": "^1.0.0",
+    "nuxt-buefy": "^0.0.4",
     "postcss": "^6.0.22",
     "postcss-hexrgba": "^1.0.1",
     "postcss-nested": "^3.0.0",

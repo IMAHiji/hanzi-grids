@@ -1,12 +1,10 @@
 <template>
-  <div>
+  <section>
     <nav
       class="navbar"
       role="navigation"
       aria-label="main navigation">
-      <div class="navbar-brand">
-        <p>Brand</p>
-      </div>
+
       <div class="navbar-menu">
         <nuxt-link
           to="/"
@@ -20,7 +18,7 @@
       </div>
     </nav>
     <nuxt/>
-  </div>
+  </section>
 </template>
 
 <style>

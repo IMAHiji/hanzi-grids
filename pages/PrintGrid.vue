@@ -1,17 +1,33 @@
 <template>
-  <div class="page-container">
-    <div class="header-preview">
-      <h2>Character: {{ activeCharacter }}</h2>
-    </div>
-    <div class="grid-container">
-      <GridElement
-        v-for="index in total"
-        :key=index />
+  <div class="grid-builder-container">
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <p>Name: </p>
+          <p>Date: </p>
+          <p>Character: {{ activeCharacter }}</p>
+        </div>
+      </div>
+      <div
+        class="grid-container"
+        size="A4">
+        <ul class="ul-list-wrapper">
+          <li
+            class="line-wrapper"
+            v-for="index in numberOfLines"
+            :key="index">
+            <grid-element
+              v-for="index in lineLength"
+              :key="index"/>
+          </li>
+        </ul>
+
+      </div>
     </div>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import GridElement from '@/components/GridElement.vue';
 
 export default {
@@ -29,52 +45,99 @@ export default {
   computed: {
     ...mapGetters([
       'activeCharacter',
+      'numberOfLines',
+      'lineLength'
     ]),
+    ...mapState([
+      'numberOfElements',
+      'numberOfLines',
+      'lineLength',
+      'gridType',
+      'gridElement'
+    ])
   },
 };
 </script>
 
 <style>
 
-.page-container{
+
+.page-preview{
+  height:11in;
+  width:8.5in;
+  margin:0 auto;
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.field{
+  margin: 0 20px;
+
+}
+.option-wrap {
+  margin:10px;
   display:flex;
   flex-direction: column;
   justify-content: center;
-  margin:0 auto;
-  height:11in;
-  width:8.5in;
 }
-.grid-container{
-  border: 1px solid black;
-  width:8.5in;
-  height: 10in;
+.grid-builder-container{
   display:flex;
-  flex-wrap: wrap;
-  overflow: hidden;
-  margin:0 auto;
+  flex-direction:column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
-
+.ul-list-wrapper{
+  list-style-type: none;
+  padding:0;
+  margin:0;
+  width:100%;
+  display:flex;
+  flex-direction: column;
+}
+.line-wrapper{
+  display:flex;
+  flex-direction: row;
+  flex-wrap:nowrap;
+  justify-content: center;
+}
 @media print {
-  body * {
+  @page {margin:0;}
+  nav.navbar {
     display:none;
   }
-  .grid-container, .grid-container *, .page-container,  #app, h3 {
-    display:flex;
-    margin: 0 auto;
-  }
-  .page-container{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    margin:0 auto;
-    height:11in;
-    width:8.5in;
-  }
-  .grid-container {
-    border: 1px solid black;
-    display:flex;
-    flex-wrap: wrap;
-    margin:0 auto;
-  }
+
+.field{
+  margin: 0 20px;
+}
+.option-wrap {
+  margin:10px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.grid-builder-container{
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.ul-list-wrapper{
+  list-style-type: none;
+  padding:0;
+  margin:0;
+  width:100%;
+  display:flex;
+  flex-direction: column;
+}
+.line-wrapper{
+  display:flex;
+  flex-direction: row;
+  flex-wrap:nowrap;
+  justify-content: center;
+}
 }
 </style>
