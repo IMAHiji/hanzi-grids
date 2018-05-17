@@ -2,15 +2,17 @@
 import calculateNumberOfGridElements from '~/plugins/gridCalc'
 
 const zoneHeight = 9.5;
-const zoneWidth = 7.5;
+const zoneWidth = 8;
 
 export const state = () => {
   return {
     character: '安',
-    numberOfElements:0,
+    lineLength: 7,
+    numberOfLines: 9,
     gridType: 'rice',
     gridElement:{
       side:1,
+      fontSize:70
     }
   }
 }
@@ -20,10 +22,28 @@ export const mutations = {
     state.character = payload;
   },
   updateNumberOfElements: (state, payload) => {
-    state.numberOfElements = payload;
+    console.log('Updating numbers with  ', payload)
+    state.numberOfLines = payload.numberOfLines;
+    state.lineLength = payload.lineLength;
   },
   updateSize: (state, payload) => {
     state.gridElement.side = payload;
+
+    switch(payload){
+      case '0.7':
+        state.gridElement.fontSize = 60
+        break;
+      case '0.6':
+        state.gridElement.fontSize = 50
+        break;
+      case '0.5':
+        state.gridElement.fontSize = 40
+        break;
+      default:
+        state.gridElement.fontSize = 70
+        break;
+    }
+    console.log('outside size', typeof payload)
   },
   updateGridType: (state, payload) => {
     state.gridType = payload;
@@ -35,8 +55,9 @@ export const actions = {
     commit('updateActiveCharacter', payload.target.value);
   },
   updateNumberOfElements:({ commit, state }, payload)=>{
-    const number = calculateNumberOfGridElements(zoneHeight, zoneWidth, state.gridElement.side);
-    commit('updateNumberOfElements', number)
+
+    const elementsPayload = calculateNumberOfGridElements(zoneHeight, zoneWidth, payload);
+    commit('updateNumberOfElements', elementsPayload)
   },
   updateSize:({ commit }, payload)=>{
     commit('updateSize', payload)
@@ -48,7 +69,8 @@ export const actions = {
 
 export const getters = {
   activeCharacter: state => state.character,
-  numberOfElements: state => state.numberOfElements,
+  lineLength: state => state.lineLength,
+  numberOfLines: state => state.numberOfLines,
   gridElement: state => state.gridElement,
   gridType: state => state.gridType,
 }

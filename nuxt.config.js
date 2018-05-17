@@ -40,5 +40,5 @@ module.exports = {
   },
   plugins: [
     '~/plugins/gridCalc.js',
-  ]
+  ],
 }

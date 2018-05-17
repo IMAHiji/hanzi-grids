@@ -4,7 +4,9 @@
     :style="{ width: gridElement.side+'in', height: gridElement.side+'in' }">
     <span class="center-horizontal" />
     <span class="center-vertical" />
-    <p class="character">{{ activeCharacter }}</p>
+    <p
+      class="character"
+      :style="{ fontSize: `${gridElement.fontSize}px` }" >{{ activeCharacter }}</p>
   </div>
 </template>
 <script>
@@ -48,7 +50,6 @@ export default {
     margin:0 auto;
     display: block;
     color: rgba(0,0,0,0.2);
-    font-size: 70px;
     font-weight:300;
   }
   .center-vertical {

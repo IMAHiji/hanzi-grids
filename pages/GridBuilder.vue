@@ -15,11 +15,12 @@
         <label for="element-size">Size</label>
         <input
           name="element-size"
-          type="range"
+          type="number"
+          value="1"
           min="0.5"
           max="1"
           step="0.1"
-          @input="updateSize">
+          @input="updateSize"><span>inches</span>
 
       </div>
       <div class="option-wrap">
@@ -43,14 +44,22 @@
       <div class="header-preview">
         <h2>Character: {{ activeCharacter }}</h2>
         <h2>Grid type: {{ gridType }}</h2>
-        <h2>Size: {{ gridElement.side }} inch</h2>
+        <h2>Size: {{ gridElement.side }} inch font: {{ gridElement.fontSize }} lines: {{ numberOfLines }} per line: {{ lineLength }} </h2>
       </div>
       <div
         class="grid-container"
         size="A4">
-        <grid-element
-          v-for="index in numberOfElements"
-          :key="index"/>
+        <ul class="ul-list-wrapper">
+          <li
+            class="line-wrapper"
+            v-for="index in numberOfLines"
+            :key="index">
+            <grid-element
+              v-for="index in lineLength"
+              :key="index"/>
+          </li>
+        </ul>
+
       </div>
     </div>
   </div>
@@ -72,20 +81,20 @@ export default {
   computed: {
     ...mapGetters([
       'activeCharacter',
-      'gridElement',
+      'numberOfLines',
+      'lineLength'
     ]),
     ...mapState([
       'numberOfElements',
+      'numberOfLines',
+      'lineLength',
       'gridType',
-
+      'gridElement'
     ])
   },
   methods: {
     updateActiveCharacter(e) {
       this.$store.commit('updateActiveCharacter', e.target.value);
-    },
-    populateElements(){
-      this.$store.dispatch('updateNumberOfElements')
     },
     updateGridType(e){
       console.log('Dispatch update grid type', e.target.value)
@@ -96,9 +105,10 @@ export default {
       this.$store.dispatch('updateNumberOfElements', e.target.value)
     }
   },
-  async fetch({store}){
-    await store.dispatch('updateNumberOfElements')
-  }
+  // async fetch({store}){
+  //   console.log('Fetch fired')
+  //   await store.dispatch('updateNumberOfElements', 1)
+  // },
 }
 </script>
 <style>
@@ -122,11 +132,6 @@ export default {
   height:9.5in;
   width:8in;
   margin:0 auto;
-  display:flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 .grid-options {
   display: flex;
@@ -143,5 +148,19 @@ export default {
   justify-content: center;
   align-content: center;
   align-items: center;
+}
+.ul-list-wrapper{
+  list-style-type: none;
+  padding:0;
+  margin:0;
+  width:100%;
+  display:flex;
+  flex-direction: column;
+}
+.line-wrapper{
+  display:flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  flex-wrap:nowrap;
 }
 </style>
