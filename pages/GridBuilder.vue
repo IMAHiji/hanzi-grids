@@ -15,7 +15,7 @@
         <b-input
           name="element-size"
           type="number"
-          min="0.6"
+          min="0.8"
           max="1"
           step="0.1"
           @input="updateSize" />
