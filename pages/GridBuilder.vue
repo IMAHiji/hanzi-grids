@@ -34,16 +34,11 @@
           <option value="rice">米</option>
         </b-select>
       </b-field>
-
-
-
-
       <b-field label="Print Grid">
-        <nuxt-link to="/PrintGrid">
-          <button class="button">Print</button>
-        </nuxt-link>
+        <button
+          class="button"
+          @click="print">Print</button>
       </b-field>
-
     </section>
 
     <div class="card">
@@ -111,7 +106,10 @@ export default {
     updateSize(e){
       this.$store.dispatch('updateSize', e)
       this.$store.dispatch('updateNumberOfElements', e)
-    }
+    },
+    print(){
+      window.print();
+    },
   },
   async fetch({store}){
     console.log('Fetch fired')
@@ -175,7 +173,16 @@ export default {
   flex-direction: row;
   flex-wrap:nowrap;
   justify-content: center;
+}
 
+@media print {
+  @page {margin:0;}
+  nav.navbar {
+    display:none;
+  }
+  .grid-options{
+    display:none;
+  }
 
 }
 
