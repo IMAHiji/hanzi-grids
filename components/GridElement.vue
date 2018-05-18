@@ -54,7 +54,7 @@ export default {
 </script>
 <style >
   .grid-element {
-    border:1px solid black;
+    border:1px solid rgba(0,0,0,0.3);
     font-size:20px;
     display:flex;
     flex:0 1 auto;
@@ -71,7 +71,7 @@ export default {
     padding:0;
     margin:0 auto;
     display: block;
-    color: rgba(0,0,0,0.2);
+    color: rgba(0,0,0,0.1);
     font-weight:300;
   }
 </style>
