@@ -22,7 +22,6 @@ export const mutations = {
     state.character = payload;
   },
   updateNumberOfElements: (state, payload) => {
-    console.log('Updating numbers with  ', payload)
     state.numberOfLines = payload.numberOfLines;
     state.lineLength = payload.lineLength;
   },

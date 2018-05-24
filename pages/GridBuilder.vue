@@ -10,14 +10,13 @@
           @input="updateActiveCharacter" />
       </b-field>
 
-
-      <b-field label="Grid Size (inches)">
+      <b-field :label="sizeDisplay">
         <b-input
           name="element-size"
           type="number"
-          min="0.8"
+          min="0.6"
           max="1"
-          step="0.1"
+          step="0.2"
           @input="updateSize" />
       </b-field>
 
@@ -93,7 +92,10 @@ export default {
       'lineLength',
       'gridType',
       'gridElement'
-    ])
+    ]),
+    sizeDisplay(){
+      return `${this.gridElement.side}-in.`;
+    }
   },
   methods: {
     updateActiveCharacter(e) {
@@ -117,7 +119,7 @@ export default {
   },
 }
 </script>
-<style>
+<style lang="scss">
 .page-preview{
   height:11in;
   width:8.5in;
@@ -128,14 +130,14 @@ export default {
   flex-direction: column;
   justify-content: center;
 }
-.header-preview{
-  height: 1in;
-  width:8.5in;
-}
+
 .grid-container {
   height:9.5in;
   width:8in;
   margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  justify-content: flex-end;
 }
 .grid-options {
   display: flex;
