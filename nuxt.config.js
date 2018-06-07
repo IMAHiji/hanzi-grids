@@ -42,9 +42,9 @@ module.exports = {
 
   },
   modules:[
-    'nuxt-buefy'
+    
   ],
   plugins: [
-    '~/plugins/gridCalc.js',
+    
   ],
 }

@@ -54,7 +54,8 @@ export const actions = {
     commit('updateActiveCharacter', payload.target.value);
   },
   updateNumberOfElements:({ commit, state }, payload)=>{
-
+    console.log('Zone Height', zoneHeight)
+    console.log('Zone Width', zoneWidth)
     const elementsPayload = calculateNumberOfGridElements(zoneHeight, zoneWidth, payload);
     commit('updateNumberOfElements', elementsPayload)
   },

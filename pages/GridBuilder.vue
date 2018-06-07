@@ -1,29 +1,29 @@
 <template>
   <div class="grid-builder-container">
     <section class="grid-options">
-
-      <b-field label="Choose Character">
-        <b-input
+      <div class="option-wrap">
+        <label>Choose Character</label>  
+        <input
           name="character-input"
           type="text"
           :maxlength="maxInput"
-          @input="updateActiveCharacter" />
-      </b-field>
-
-      <b-field :label="sizeDisplay">
-        <b-input
+          @input="updateActiveCharacter"/>
+      </div>
+  
+      <div class="option-wrap">
+        <label> Size Display</label>
+        <input
           name="element-size"
           type="number"
           min="0.6"
           max="1"
           step="0.2"
           @input="updateSize" />
-      </b-field>
-
-
-
-      <b-field label="Grid Type">
-        <b-select
+      </div>
+      
+      <div class="option-wrap">
+        <label>Grid Type</label>
+        <select
           placeholder="Grid Type"
           name="grid-type"
           id="grid-type"
@@ -31,16 +31,16 @@
           @input="updateGridType">
           <option value="field">田</option>
           <option value="rice">米</option>
-        </b-select>
-      </b-field>
-      <b-field label="Print Grid">
+        </select>
+      </div>
+      <div class="option-wrap">
         <button
           class="button"
-          @click="print">Print</button>
-      </b-field>
+          @click="print">Print Grid</button>
+      </div>
     </section>
 
-    <div class="card">
+    <div class="print-container">
       <div class="card-content">
         <div class="content">
           <p>Name: </p>
@@ -99,23 +99,27 @@ export default {
   },
   methods: {
     updateActiveCharacter(e) {
-      this.$store.commit('updateActiveCharacter', e);
+      console.log('Active character ', e)
+      this.$store.commit('updateActiveCharacter', e.target.value);
     },
     updateGridType(e){
       console.log('Dispatch update grid type', e)
       this.$store.commit('updateGridType', e)
     },
     updateSize(e){
-      this.$store.dispatch('updateSize', e)
-      this.$store.dispatch('updateNumberOfElements', e)
+      this.$store.dispatch('updateSize', e.target.value)
+      this.$store.dispatch('updateNumberOfElements', e.target.value)
     },
     print(){
       window.print();
     },
   },
-  async fetch({store}){
+  mounted: ()=> {
+    console.log('Mounted')
+  },
+  fetch({store}){
     console.log('Fetch fired')
-    await store.dispatch('updateNumberOfElements', 1)
+    store.dispatch('updateNumberOfElements', 1)
   },
 }
 </script>

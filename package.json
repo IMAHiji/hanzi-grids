@@ -18,8 +18,7 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
-    "nuxt": "^1.0.0",
-    "nuxt-buefy": "^0.0.4"
+    "nuxt": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

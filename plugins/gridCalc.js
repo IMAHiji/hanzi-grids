@@ -1,4 +1,5 @@
-const calculateNumberOfGridElements = (height = 9.5, width = 8, elementSize = 1)=> {
+
+const calculateNumberOfGridElements = (height, width, elementSize = 1)=> {
   let area = height*width;
 
   let countHorizontal = Math.floor(width/elementSize);
@@ -6,6 +7,8 @@ const calculateNumberOfGridElements = (height = 9.5, width = 8, elementSize = 1)
 
   let numberOfLines = countVertical;
   let lineLength = countHorizontal;
+  console.log('Width', width)
+  console.log('Height', height)
   console.log('Horizontal', countHorizontal)
   console.log('Vertical', countVertical)
   let returnObject = {
