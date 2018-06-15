@@ -42,7 +42,6 @@ export const mutations = {
         state.gridElement.fontSize = 70
         break;
     }
-    console.log('outside size', typeof payload)
   },
   updateGridType: (state, payload) => {
     state.gridType = payload;
@@ -54,8 +53,6 @@ export const actions = {
     commit('updateActiveCharacter', payload.target.value);
   },
   updateNumberOfElements:({ commit, state }, payload)=>{
-    console.log('Zone Height', zoneHeight)
-    console.log('Zone Width', zoneWidth)
     const elementsPayload = calculateNumberOfGridElements(zoneHeight, zoneWidth, payload);
     commit('updateNumberOfElements', elementsPayload)
   },

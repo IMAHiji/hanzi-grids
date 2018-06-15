@@ -56,12 +56,10 @@ export default {
     }
   },
   methods: {
-    print(){
-      window.print();
-    },
   },
   mounted: ()=> {
-    console.log('Mounted')
+    console.log('Mounted， should print')
+    window.print();
   },
   fetch({store}){
   },
