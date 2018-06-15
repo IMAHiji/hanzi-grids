@@ -115,7 +115,9 @@ export default {
 }
 
 @media print {
-  @page {margin:0;}
+  @page {
+    margin:0 !important;
+  }
   nav.navbar {
     display:none;
   }

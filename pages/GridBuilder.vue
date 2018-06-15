@@ -41,10 +41,12 @@
     </section>
 
     <div class="print-container">
-      <div class="sheet-header">
-        <p>Name: </p>
-        <p>Date: </p>
-        <p>Character: {{ activeCharacter }}</p>
+      <div class="card-content">
+        <div class="content">
+          <p>Name: </p>
+          <p>Date: </p>
+          <p>Character: {{ activeCharacter }}</p>
+        </div>
       </div>
       <div
         class="grid-container"
@@ -127,6 +129,7 @@ export default {
   width:8.5in;
   margin:0 auto;
   box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
   display: flex;
   flex-direction: column;
   justify-content: center;
