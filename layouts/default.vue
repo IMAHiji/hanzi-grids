@@ -20,6 +20,3 @@
     <nuxt/>
   </section>
 </template>
-
-<style>
-</style>
