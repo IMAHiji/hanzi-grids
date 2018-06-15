@@ -7,12 +7,13 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Character Practice Sheet Generator' }
+      { hid: 'description', name: 'description', content: 'Hanzi Practice Sheet Generator' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
+      { rel: 'stylesheet', href:'https://fonts.googleapis.com/css?family=Noto+Sans|Roboto' },
+      { rel: 'stylesheet', href:'//fonts.googleapis.com/earlyaccess/notosanstc.css' },
+
     ],
   },
   /*
@@ -42,9 +43,9 @@ module.exports = {
 
   },
   modules:[
-    
+
   ],
   plugins: [
-    
+
   ],
 }

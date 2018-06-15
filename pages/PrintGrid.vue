@@ -1,45 +1,5 @@
 <template>
   <div class="grid-builder-container">
-    <section class="grid-options">
-      <div class="option-wrap">
-        <label>Choose Character</label>
-        <input
-          name="character-input"
-          type="text"
-          :maxlength="maxInput"
-          @input="updateActiveCharacter"/>
-      </div>
-
-      <div class="option-wrap">
-        <label> Size Display</label>
-        <input
-          name="element-size"
-          type="number"
-          min="0.6"
-          max="1"
-          step="0.2"
-          @input="updateSize" />
-      </div>
-
-      <div class="option-wrap">
-        <label>Grid Type</label>
-        <select
-          placeholder="Grid Type"
-          name="grid-type"
-          id="grid-type"
-          :value="gridType"
-          @input="updateGridType">
-          <option value="field">田</option>
-          <option value="rice">米</option>
-        </select>
-      </div>
-      <div class="option-wrap">
-        <nuxt-link to="/PrintGrid">
-          <button class="button">Print Grid</button>
-        </nuxt-link>
-      </div>
-    </section>
-
     <div class="print-container">
       <div class="sheet-header">
         <p>Name: </p>
@@ -69,7 +29,7 @@ import { mapGetters, mapState } from 'vuex';
 import GridElement from '@/components/GridElement.vue';
 import calculateNumberOfGridElements from '~/plugins/gridCalc'
 export default {
-  name: 'GridBuilder',
+  name: 'PrintGrid',
   components: {
     GridElement,
   },
@@ -96,18 +56,6 @@ export default {
     }
   },
   methods: {
-    updateActiveCharacter(e) {
-      console.log('Active character ', e)
-      this.$store.commit('updateActiveCharacter', e.target.value);
-    },
-    updateGridType(e){
-      console.log('Dispatch update grid type', e)
-      this.$store.commit('updateGridType', e)
-    },
-    updateSize(e){
-      this.$store.dispatch('updateSize', e.target.value)
-      this.$store.dispatch('updateNumberOfElements', e.target.value)
-    },
     print(){
       window.print();
     },
@@ -116,22 +64,10 @@ export default {
     console.log('Mounted')
   },
   fetch({store}){
-    console.log('Fetch fired')
-    store.dispatch('updateNumberOfElements', 1)
   },
 }
 </script>
 <style lang="scss">
-.page-preview{
-  height:11in;
-  width:8.5in;
-  margin:0 auto;
-  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .grid-container {
   height:9.5in;
   width:8in;
@@ -185,6 +121,9 @@ export default {
   }
   .grid-options{
     display:none;
+  }
+  .sheet-header{
+    margin-top:40px;
   }
 
 }

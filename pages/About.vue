@@ -19,7 +19,7 @@ export default {
 }
 
 .title {
-  font-family: Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
+
   display: block;
   font-weight: 300;
   font-size: 100px;

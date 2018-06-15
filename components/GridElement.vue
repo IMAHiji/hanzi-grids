@@ -52,7 +52,7 @@ export default {
   },
 };
 </script>
-<style >
+<style lang="scss">
   .grid-element {
     border:1px solid rgba(0,0,0,0.3);
     font-size:20px;
@@ -66,12 +66,18 @@ export default {
   .grid-element:not(:first-child) p {
     visibility: hidden
   }
-  .character {
-    font-family: "KaiTi TC" , "楷体", STKaiti, "华文楷体", serif ;
+  p.character {
+    // font-family: "KaiTi TC" , "楷体", STKaiti, "华文楷体", serif;
+    font-family: 'Noto Sans TC', sans-serif;
     padding:0;
     margin:0 auto;
     display: block;
     color: rgba(0,0,0,0.1);
     font-weight:300;
+
+    @media only print {
+        font-family: 'Noto Sans TC', sans-serif;
+    }
+
   }
 </style>
