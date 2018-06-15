@@ -51,17 +51,15 @@ export default {
       'gridType',
       'gridElement'
     ]),
-    sizeDisplay(){
-      return `${this.gridElement.side}-in.`;
-    }
+
   },
   methods: {
   },
-  mounted: ()=> {
-    console.log('Mounted， should print')
-    window.print();
-  },
-  fetch({store}){
+  mounted () {
+    console.log('Mounted， should wait till render then print')
+    this.$nextTick(() => {
+      window.print();
+    })
   },
 }
 </script>
