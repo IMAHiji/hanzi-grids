@@ -28,6 +28,7 @@
 import { mapGetters, mapState } from 'vuex';
 import GridElement from '@/components/GridElement.vue';
 import calculateNumberOfGridElements from '~/plugins/gridCalc'
+import { setTimeout } from 'timers';
 export default {
   name: 'PrintGrid',
   components: {
@@ -58,7 +59,10 @@ export default {
   mounted () {
     console.log('Mounted， should wait till render then print')
     this.$nextTick(() => {
-      window.print();
+      setTimeout(()=>{
+        window.print();
+      }, 1000)
+
     })
   },
 }
